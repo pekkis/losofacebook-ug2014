@@ -1,0 +1,49 @@
+<div class="row">
+    <div class="span12">
+        <img ng-src="{{ backgroundImage }}" />
+
+        <div class="row">
+            <div class="span2">
+                <img ng-src="{{ profileImage }}" id="profile-image" />
+            </div>
+
+            <div class="span10">
+                <h1>{{ person.firstName }} {{ person.lastName }} </h1>
+
+                <div class="row">
+                    <div id="basic-info" class="span10">
+                        <div>
+                            {{ person.occupation }} at <a href="/company/{{ person.company }}">{{ person.company }}</a>
+                        </div>
+                        <div>
+                            Birthday: {{ person.birthday | date:'dd.MM.yyyy' }}
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+
+    <div id="wall" class="span8">
+
+        <h2>Wall</h2>
+
+        <lb-wall person="person"></lb-wall>
+
+
+    </div>
+
+    <div class="span4">
+
+        <div class="well">
+            <h2>Friends</h2>
+            <lb-friends friends="person.friends"></lb-friends>
+        </div>
+    </div>
+
+</div>
+

@@ -1,0 +1,191 @@
+
+
+
+server {
+    listen       80;
+    server_name  losofacebook.tunk.io;
+    root    /wwwroot/losonaamakirja/web;
+
+    # keepalive_timeout 0;
+    #if_modified_since off;
+    #add_header Last-Modified "";
+    #add_header ETag "";
+
+    charset utf-8;
+
+    proxy_buffer_size   2048k;
+    proxy_buffers   4 2048k;
+    proxy_busy_buffers_size   2048k;
+    fastcgi_buffers 8 2048k;
+    fastcgi_buffer_size 2048k;
+
+	gzip on;
+	gzip_disable "msie6";
+
+	gzip_vary on;
+	gzip_proxied any;
+	gzip_comp_level 6;
+	gzip_buffers 16 8k;
+	gzip_http_version 1.1;
+	gzip_types text/plain text/css application/json application/x-javascript text/xml application/xml application/xml+rss text/javascript;
+
+# odp
+    location ~* ^.+\.(odt|odp)$  {
+        access_log off;
+        gzip off;
+        expires 30d;
+    }
+
+    # non-zipped images
+    location ~* ^.+\.(jpg|jpeg|gif|png|ico)$  {
+        access_log off;
+        gzip off;
+        expires 30d;
+    }
+
+    # gzipped images
+    location ~* ^.+\.(svg)$  {
+        access_log off;
+        gzip on;
+        expires 30d;
+    }
+
+    # Documents
+    location ~* ^.+\.(css|js|html|txt)$ {
+        access_log off;
+        expires 30d;
+        gzip on;
+        charset utf-8;
+    }
+
+    # Web fonts, gzipped
+    location ~* ^.+\.(eot|ttf|otf|woff)$  {
+        access_log off;
+        gzip on;
+        expires 30d;
+        add_header Access-Control-Allow-Origin *;
+    }
+
+    # archives
+    location ~* ^.+\.(pdf|gz|bz2|exe|rar|zip|7z)$ {
+        access_log off;
+        gzip off;
+    }
+
+    # videos
+    location ~* ^.+\.(mp4|avi)$ {
+        access_log off;
+        gzip off;
+    }
+
+
+    # bad regexes
+    location ~* (\.svn|\.git) {
+        access_log off;
+        deny all;
+    }
+
+    location ~* ^/api/ {
+
+        # losofacebook is so slow it will die without this.
+        proxy_read_timeout 120;
+        proxy_connect_timeout 120;
+
+        include fastcgi_params;
+        fastcgi_pass 127.0.0.1:9000;
+        fastcgi_param SCRIPT_FILENAME $document_root/index.php;
+        fastcgi_param PATH_INFO $fastcgi_script_name;
+    }
+
+    location / {
+        try_files $uri /index.html;
+    }
+
+}
+
+server {
+    listen       80;
+    server_name  static.losofacebook.tunk.io;
+    root    /wwwroot/losonaamakirja/web;
+
+    charset utf-8;
+
+	gzip on;
+	gzip_disable "msie6";
+
+	gzip_vary on;
+	gzip_proxied any;
+	gzip_comp_level 6;
+	gzip_buffers 16 8k;
+	gzip_http_version 1.1;
+	gzip_types text/plain text/css application/json application/x-javascript text/xml application/xml application/xml+rss text/javascript;
+
+    # odp
+    location ~* ^.+\.(odt|odp)$  {
+        access_log off;
+        gzip off;
+        expires 30d;
+    }
+
+    # non-zipped images
+    location ~* ^.+\.(jpg|jpeg|gif|png|ico)$  {
+        access_log off;
+        gzip off;
+        expires 30d;
+    }
+
+    # gzipped images
+    location ~* ^.+\.(svg)$  {
+        access_log off;
+        gzip on;
+        expires 30d;
+    }
+
+    # Documents
+    location ~* ^.+\.(css|js|html|txt)$ {
+        access_log off;
+        expires 30d;
+        gzip on;
+        charset utf-8;
+    }
+
+    # Web fonts, gzipped
+    location ~* ^.+\.(eot|ttf|otf|woff)$  {
+        access_log off;
+        gzip on;
+        expires 30d;
+        add_header Access-Control-Allow-Origin *;
+    }
+
+    # archives
+    location ~* ^.+\.(pdf|gz|bz2|exe|rar|zip|7z)$ {
+        access_log off;
+        gzip off;
+    }
+
+    # videos
+    location ~* ^.+\.(mp4|avi)$ {
+        access_log off;
+        gzip off;
+    }
+
+
+    # bad regexes
+    location ~* (\.svn|\.git) {
+        access_log off;
+        deny all;
+    }
+
+    location ~* ^/api/ {
+        deny all;
+    }
+
+    location = /index.html {
+        deny all;
+    }
+
+    location / {
+        try_files $uri =404;
+    }
+
+}

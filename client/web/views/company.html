@@ -1,0 +1,35 @@
+<div class="row">
+    <div class="span12">
+        <img ng-src="{{ backgroundImage }}" />
+
+        <div class="row">
+            <div class="span2">
+                <img ng-src="{{ profileImage }}" id="profile-image" />
+            </div>
+
+            <div class="span10">
+                <h1>{{ company.name }} </h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+
+    <ul class="thumbnails">
+
+        <li class="span3" ng-repeat="person in persons | orderBy:['lastName', 'firstName']">
+
+            <div class="thumbnail">
+                <img alt="{{ person.firstName }} {{ person.lastName }}" style="width: 210px; height: 210px;" ng-src="/images/{{ person.primaryImageId }}-loso.jpg">
+                <div class="caption">
+                    <h3>{{ person.firstName }} {{ person.lastName }}</h3>
+                    <p>About the person</p>
+                    <p><a href="/person/{{ person.username }}" class="btn btn-primary">Go to</a> <a href="#" class="btn">Goo</a></p>
+                </div>
+            </div>
+        </li>
+    </ul>
+
+
+</div>

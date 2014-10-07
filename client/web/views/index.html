@@ -1,0 +1,80 @@
+<div class="row">
+    <div class="span9">
+
+        <h1>Welcome to Losofacebook, {{ currentUser.firstName }}!</h1>
+
+        <p>
+            Losofacebook, brought to you by the <a href="/company/Dr. Kobros Foundation">Dr. Kobros Foundation</a>, is
+            a social media application for the 2010's. Better than Facebook, Twitter, LinkedIn and all the others
+            <em>combined</em>, Losofacebook will change the way you think about life, universe and stuff.
+        </p>
+
+        <p>
+            <ul>
+                <li><a href="https://github.com/pekkis/losonaamakirja">Losofacebook at Github</a></li>
+            </ul>
+        </p>
+
+
+        <form name="form">
+
+            <fieldset>
+                <legend>Search for losofaces</legend>
+
+                <label>First name</label>
+                <input type="text" name="firstname" placeholder="" ng-model="user.first_name">
+
+                <label>Last name</label>
+                <input type="text" name="lastname" placeholder="" ng-model="user.last_name">
+
+                <button class="btn" ng-disabled="!user.first_name && !user.last_name" ng-click="search()">Submit</button>
+
+
+            </fieldset>
+
+        </form>
+
+        <p>
+            {{ user | json }}
+        </p>
+
+
+        <table class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>Losoface</th>
+                    <th>Last name</th>
+                    <th>First name</th>
+                    <th>Company</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr ng-repeat="person in results | orderBy:['lastName', 'firstName']">
+                    <td><img class="mini" ng-src="/images/{{ person.primaryImageId}}-thumb.jpg"><a href="/person/{{ person.username }}">{{ person.username}}</a></td>
+                    <td>{{ person.lastName}}</td>
+                    <td>{{ person.firstName}}</td>
+                    <td><a href="/company/>{{ person.company}}">{{ person.company}}</a></td>
+                </tr>
+            </tbody>
+
+        </table>
+
+
+
+    </div>
+
+    <div id="advertisements" class="span3">
+
+        <p>
+            <img src="http://place.manatee.lc/1/1000/600.jpg" />
+        </p>
+
+        <p>
+            <img src="http://place.manatee.lc/2/1000/600.jpg" />
+        </p>
+
+
+    </div>
+
+</div>

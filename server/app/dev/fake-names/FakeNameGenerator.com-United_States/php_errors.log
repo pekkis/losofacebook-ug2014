@@ -1,0 +1,2 @@
+[07-Feb-2013 10:04:55 Europe/Helsinki] PHP Warning:  file_get_contents(): Unable to find the wrapper "compress.bz2" - did you forget to enable it when you configured PHP? in /wwwroot/losonaamakirja/app/data/fake-names/FakeNameGenerator.com-United_States/tralala.php on line 3
+[07-Feb-2013 10:04:55 Europe/Helsinki] PHP Warning:  file_get_contents(compress.bz2://./FakeNameGenerator.com.csv.bz2): failed to open stream: No such file or directory in /wwwroot/losonaamakirja/app/data/fake-names/FakeNameGenerator.com-United_States/tralala.php on line 3

@@ -1,0 +1,143 @@
+@color: rgba(255, 0, 0, .5);
+
+.rounded-corners (@radius: 5px) {
+  -webkit-border-radius: @radius;
+  -moz-border-radius: @radius;
+  -ms-border-radius: @radius;
+  -o-border-radius: @radius;
+  border-radius: @radius;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.padder {
+  margin: 2em 0;
+}
+
+header {
+  background-color: #3b5998;
+  padding: 1em;
+  color: rgb(255, 255, 255);
+
+  a:link, a:visited, a:hover, a:active {
+    color: rgb(255, 255, 255);
+  }
+
+  h1 {
+    margin: 0;
+    display: inline-block;
+  }
+
+  ul {
+    display: inline-block;
+  }
+
+  li {
+    display: inline-block;
+  }
+
+}
+
+#profile-image {
+  position: relative;
+  top: -50px;
+  left: 10px;
+  z-index: 1;
+  width: 90%;
+  border: 4px solid white;
+}
+
+.friends {
+
+  .rounded-corners(5px);
+  padding: .5em;
+
+  background-color: rgba(0,0,0,.1);
+  max-height: 800px;
+  overflow-y: scroll;
+
+  > ul {
+
+    > li {
+      list-style-type: none;
+      margin: 0;
+      padding: 0.2em 0;
+    }
+
+    display: block;
+    margin: 0;
+
+  }
+
+  img {
+    vertical-align: middle;
+    margin-right: 1em;
+  }
+
+}
+
+/* Posts */
+
+
+  ul.posts {
+
+    .comment {
+      clear: both;
+    }
+
+    img {
+      padding: 0 1em 1em 0;
+    }
+
+    display: block;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+
+    ul {
+      font-size: smaller;
+      margin-left: 85px;
+
+      li {
+        margin: 15px 0;
+        padding-top: 15px;
+        border-top: 1px solid #999;
+        list-style-type: none;
+
+        &.comment {
+          img {
+            float: left;
+          }
+        }
+
+        > div {
+          margin-left: 60px;
+        }
+
+      }
+
+    }
+
+    li {
+
+      &.post {
+        img {
+          float: left;
+        }
+
+        > div {
+          padding-left: 85px;
+        }
+
+      }
+
+    }
+
+
+
+  }
+
+

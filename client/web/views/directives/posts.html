@@ -1,0 +1,48 @@
+<div>
+
+<p>
+    <textarea ng-model="post" placeholder="Say something!"></textarea>
+    <button ng-click="doPost(person, post)">Post</button>
+</p>
+
+<ul class="posts">
+    <li class="post" ng-repeat="post in posts" >
+
+        <img ng-src="/images/{{ post.poster.primaryImageId }}-midi.jpg" />
+
+        <div class="author">
+            <a ng-href="/person/{{ post.poster.username }}">{{ post.person.firstName }} {{ post.person.lastName }}</a>
+        </div>
+
+        <div ng-bind-html="post.content"></div>
+
+        <ul class="comments">
+            <li class="comment" ng-repeat="comment in post.comments">
+
+                <img ng-src="/images/{{ comment.poster.primaryImageId }}-mini.jpg" />
+
+                <div class="author">
+                    <a ng-href="/person/{{ comment.poster.username }}">{{ comment.poster.firstName }} {{ comment.poster.lastName }}</a>
+                </div>
+
+                <div ng-bind-html="comment.content"></div>
+            </li>
+
+            <li>
+                <div>
+                    <textarea ng-model="comment" placeholder="Say something!"></textarea> <button ng-click="postComment(post, comment)">Post</button>
+                </div>
+            </li>
+
+        </ul>
+
+    </li>
+
+</ul>
+
+{{ page }}
+
+<button ng-click="fetchMore()">Fetch some more</button>
+
+
+</div>

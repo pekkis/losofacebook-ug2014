@@ -1,0 +1,19 @@
+{
+    "autoload": {
+        "psr-0": {
+            "Losofacebook": "src/"
+        }
+    },
+
+    "require": {
+        "doctrine/dbal": "~2.3",
+        "silex/silex": "~1.2",
+        "knplabs/console-service-provider": "dev-master@dev",
+        "keboola/csv": "~1.1",
+        "symfony/finder": "~2.5",
+        "monolog/monolog": "~1.11",
+        "everyman/neo4jphp": "dev-master",
+        "rhumsaa/uuid": "~2.7"
+    },
+    "minimum-stability": "stable"
+}
