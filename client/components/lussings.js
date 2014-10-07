@@ -2,9 +2,10 @@
  * @jsx React.DOM
  */
 
-var React = require('react');
+var React = require('react/addons');
 
 var Post = require('./post.js');
+var LussingsForm = require('./lussingsform.js');
 
 var Lussings = React.createClass({
 
@@ -37,6 +38,24 @@ var Lussings = React.createClass({
 	    
 	  },
 
+	handleSubmit: function(lussing) {
+		
+		var newPost = {
+			comments: [],
+			content: lussing,
+			poster_first_name: this.props.person.firstName,
+			poster_last_name: this.props.person.lastName,
+			poster_primary_image_id: this.props.person.primaryImageId
+		};
+
+		var newState = React.addons.update(this.state, {
+      		posts : {
+        		$unshift : [newPost]
+      		}
+  		});
+
+		this.setState(newState);
+	},
 
     urlirizer: function(id, version) {
     	return '/images/' + id + '-' + version + '.jpg';
@@ -52,6 +71,8 @@ var Lussings = React.createClass({
 			
 			<div>
 				<h3>Wall</h3>
+
+				<LussingsForm onLussingSubmit={this.handleSubmit} />
 
 				<ul className="posts">
 					{postNodes}

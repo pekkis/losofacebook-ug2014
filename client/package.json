@@ -8,12 +8,20 @@
   },
   "author": "",
   "license": "ISC",
+  "browserify": {
+    "transform": [
+      "reactify"
+    ]
+  },
   "dependencies": {
     "grunt": "^0.4.5",
     "grunt-contrib-less": "^0.11.4",
     "grunt-contrib-watch": "^0.6.1",
     "react": "^0.11.2",
     "react-router": "^0.9.1",
-    "reactify": "^0.14.0"
+    "reactify": "^0.14.0",
+    "jit-grunt": "~0.8.0",
+    "grunt-browserify": "~3.0.1",
+    "grunt-shell": "~1.1.1"
   }
 }

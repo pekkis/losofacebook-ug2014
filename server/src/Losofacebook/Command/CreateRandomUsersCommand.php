@@ -240,10 +240,9 @@ class CreateRandomUsersCommand extends Command
 
                 $rows[] = $dbrow;
 
-                if (count($rows) >= 100) {
+                if (count($rows) >= 1000) {
                     return $rows;
                 }
-
             }
 
             $output->write('.');

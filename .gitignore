@@ -1,4 +1,6 @@
+server/vendor/
 client/web/client.css
 client/web/images/*
 client/node_modules/
-clÃient/bunle.js
+client/web/bundle.js
+.idea/

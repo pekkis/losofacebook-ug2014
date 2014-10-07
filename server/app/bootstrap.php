@@ -8,7 +8,6 @@ use Silex\Application;
 use Losofacebook\Service\ImageService;
 use Losofacebook\Service\PersonService;
 use Losofacebook\Service\PostService;
-use Losofacebook\Service\CompanyService;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -121,32 +120,6 @@ $app->get('/api/post/{personId}', function(Application $app, Request $request, $
 
     return new JsonResponse(
         $posts
-    );
-
-});
-
-
-$app->post('/api/post/{personId}', function(Application $app, Request $request, $personId) {
-
-    /** @var PostService $postService */
-    $postService = $app['postService'];
-
-    $data = json_decode($request->getContent());
-    $post = $postService->create($personId, $data);
-    return new JsonResponse(
-        $post
-    );
-
-});
-
-$app->post('/api/post/{postId}/comment', function(Application $app, Request $request, $postId) {
-
-    /** @var PostService $postService */
-    $postService = $app['postService'];
-    $data = json_decode($request->getContent());
-    $comment = $postService->createComment($postId, $data);
-    return new JsonResponse(
-        $comment
     );
 
 });

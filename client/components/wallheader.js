@@ -23,15 +23,15 @@ var WallHeader = React.createClass({
 		return (
 			<div className="row">
 			    <div className="col-md-12">
-			        <img src={ this.backgroundImage() } />
+			        <img className="img-responsive" src={ this.backgroundImage() } />
 
 			        <div className="row">
 			            <div className="col-md-3">
-			                <img src={this.urlirizer('main')} id="profile-image" />
+			                <img className="img-responsive" src={this.urlirizer('main')} id="profile-image" />
 			            </div>
 
 			            <div className="col-md-9">
-			                <h1>{ this.props.person.firstName } { this.props.person.lastName } ({ this.props.person.id })</h1>
+			                <h1>{ this.props.person.firstName } { this.props.person.lastName }</h1>
 	
 		                    <div id="basic-info" className="col-md-10">
 		                        <div>
@@ -40,7 +40,9 @@ var WallHeader = React.createClass({
 		                        <div>
 		                            Birthday: { this.props.person.birthday}
 		                        </div>
-
+		                        <div>
+		                        	 node #{ this.props.person.id }
+		                        </div>
 		                    </div>
 			            </div>
 			        </div>

@@ -6,6 +6,11 @@ var React = require('react');
 
 var Comment = React.createClass({
 
+	propTypes: {
+		author: React.PropTypes.string.isRequired,
+		image: React.PropTypes.string.isRequired
+	},
+
     urlirizer: function(id, version) {
     	return '/images/' + id + '-' + version + '.jpg';
     },
@@ -14,8 +19,8 @@ var Comment = React.createClass({
 
 		return (
 			<li className="comment">
-				<img src={this.urlirizer(this.props.comment.poster_primary_image_id, 'midi')}/>
-				<span dangerouslySetInnerHTML={{ __html: this.props.comment.content }}></span>
+				<img src={this.urlirizer(this.props.image, 'midi')}/>
+				<div dangerouslySetInnerHTML={{ __html: this.props.children }}></div>
 			</li>
 		);
 	}

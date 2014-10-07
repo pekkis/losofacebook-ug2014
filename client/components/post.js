@@ -12,10 +12,15 @@ var Post = React.createClass({
     	return '/images/' + id + '-' + version + '.jpg';
     },
 
+    author: function(comment) {
+    	return comment.poster_first_name + ' ' + comment.poster_last_name;
+    },
+
 	render: function() {
 
+		var author = this.author;
 	    var commentNodes = this.props.post.comments.map(function(comment) { 
-	    	return (<Comment comment={comment}></Comment>);
+	    	return (<Comment author={author(comment)} image={comment.poster_primary_image_id}>{comment.content}</Comment>);
 	    });
 	    
 		return (

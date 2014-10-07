@@ -30,8 +30,12 @@ class CreatePostCommand extends Command
     {
         $person = $this->getPersonService()->findByUsername('gaylord.lohiposki');
         $this->createPosts($person, $output, rand(10, 20));
-    }
 
+        foreach ($person->getFriends() as $friend) {
+            $duh = $this->getPersonService()->findByUsername($friend->getUserName());
+            $this->createPosts($duh, $output, rand(10, 20));
+        }
+    }
 
     private function createPosts(Person $person, OutputInterface $output, $count)
     {
@@ -41,8 +45,6 @@ class CreatePostCommand extends Command
         $commentLabel = $client->makeLabel('Comment');
 
         $output->write('Creating ' . $count . ' posts for ' . $person->getFirstName() . ' ' . $person->getLastName());
-
-        $db = $this->getDb();
 
         $postTo = $client->getNode($person->getId());
 

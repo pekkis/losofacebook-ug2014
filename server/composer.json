@@ -6,7 +6,6 @@
     },
 
     "require": {
-        "doctrine/dbal": "~2.3",
         "silex/silex": "~1.2",
         "knplabs/console-service-provider": "dev-master@dev",
         "keboola/csv": "~1.1",

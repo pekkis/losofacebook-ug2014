@@ -26,6 +26,23 @@ module.exports = function(grunt) {
                 options: {
                     spawn: false
                 }
+            },
+
+            jsx: {
+                files: ['components/**/*.js'],
+                tasks: ['shell:browserify'],
+                options: {
+                    spawn: false
+                }
+            }
+        },
+
+        shell: {
+            browserify: {
+                options: {
+                    stderr: false
+                },
+                command: ['browserify -t reactify -o web/bundle.js client.js'].join(' && ')
             }
         }
     });

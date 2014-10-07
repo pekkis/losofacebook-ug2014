@@ -41,6 +41,9 @@ class InitializeImagesCommand extends Command
             $files = glob("{$path}/*.{jpg,png,gif}", GLOB_BRACE);
 
             foreach ($files as $file) {
+
+                $output->writeln("Doing...");
+
                 $node = $this->getImageService()->createImage($file, Image::TYPE_PERSON, $gender);
             }
         }

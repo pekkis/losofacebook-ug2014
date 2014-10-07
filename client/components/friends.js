@@ -8,10 +8,6 @@ var Link = Router.Link;
 
 var Friends = React.createClass({
 
-    backgroundImage: function() {
-    	return 'https://place.manatee.lc/' + this.props.person.backgroundId + '/1140/250.jpg';
-    },
-
     urlirizer: function(id, version) {
     	return '/images/' + id + '-' + version + '.jpg';
     },
